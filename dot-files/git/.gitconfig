@@ -1,0 +1,12 @@
+[user]
+	email = bex@pobox.com
+	name = Brian (bex) Exelbierd
+[core]
+	editor = /usr/bin/vim
+[push]
+	default = simple
+[alias]
+    commend = commit --amend --no-edit
+    pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master"
+[gpg]
+    program = /usr/bin/gpg2
