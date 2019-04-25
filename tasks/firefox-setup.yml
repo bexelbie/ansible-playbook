@@ -7,7 +7,7 @@
 
 # Find the profile direction
 - name: Find .mozilla/firefox profiledirectory
-  shell: grep -e '^\[Profile|^Path|^Default|^Name' ~/.mozilla/firefox/profiles.ini | grep -C 1 '^Name=bexelbie' | grep '^Path' | cut -c6-
+  shell: grep -e '^\[Profile|^Path|^Default|^Name' ~/.mozilla/firefox/profiles.ini | grep -C 1 '^Name={{ myuser }}' | grep '^Path' | cut -c6-
   register: firefox_output
   notify:
     - created_firefox_profile
