@@ -28,6 +28,12 @@
       - golang # for building gocryptfs
       - openssl-devel # for building gocryptfs
 
+- name: Add {{ myuser }} to the mock group
+  user:
+    name: {{ myuser }}
+    groups: mock
+    append: yes
+
 - name: Package install - user setup needs - Graphical
   become: yes
   dnf:
@@ -47,6 +53,7 @@
     state: present
     name:
       - pass
+      - pass-otp
       - zbar
       - oathtool
       - pius
