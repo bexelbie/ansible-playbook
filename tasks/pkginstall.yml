@@ -67,3 +67,4 @@
       - youtube-dl
       - krb5-workstation
       - ledger
+      - python3-mailmerge
