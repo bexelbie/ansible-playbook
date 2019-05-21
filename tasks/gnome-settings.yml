@@ -11,6 +11,9 @@
 - name: Gnome Shell show date
   shell: dconf write /org/gnome/desktop/interface/clock-show-date true
 
+- name: Gnome Shell show weekday
+  shell: dconf write /org/gnome/desktop/interface/clock-show-weekday true
+
 - name: Gnome Shell Automatic Timezone
   shell: dconf write /org/gnome/desktop/datetime/automatic-timezone true
 
