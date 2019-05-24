@@ -51,6 +51,7 @@
         - https://greasyfork.org/en/scripts/9165-auto-close-youtube-ads
         - Enable for Incognito Mode
       - Feedly
+      - Instapaper
 
   * Calibre - Configure proper library path
 
