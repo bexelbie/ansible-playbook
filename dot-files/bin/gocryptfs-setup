@@ -5,7 +5,7 @@ if [ -z $1 ]; then
 else
     if [ $1 = "mount" ]; then
         /usr/bin/notify-send -u critical "Mounting GoCryptFS volumes"
-        /home/bexelbie/bin/gocryptfs -extpass "pass show GPG/dot-files-secure.gocryptfs" /home/bexelbie/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure.encrypted /home/bexelbie/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure
+        gocryptfs -extpass "pass show GPG/dot-files-secure.gocryptfs" /home/bexelbie/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure.encrypted /home/bexelbie/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure
     elif [ $1 = "unmount" ]; then
         /usr/bin/fusermount -u /home/bexelbie/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure
     else
