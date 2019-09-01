@@ -1,0 +1,13 @@
+# Partially derived from
+# https://fedoramagazine.org/automate-backups-with-restic-and-systemd/ and the role provided by Fredrik Rambris in the comments
+
+[Unit]
+Description=Restic backup prune
+
+[Service]
+Type=simple
+EnvironmentFile=/home/bexelbie/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure/restic/env
+ExecStart=/usr/bin/restic forget --prune --verbose --tag systemd.timer --group-by "host,paths,tags" --keep-daily $RESTIC_RETENTION_DAYS --keep-weekly $RESTIC_RETENTION_WEEKS --keep-monthly $RESTIC_RETENTION_MONTHS --keep-yearly $RESTIC_RETENTION_YEARS
+RestartSec=60
+Restart=on-failure
+IOSchedulingClass=idle

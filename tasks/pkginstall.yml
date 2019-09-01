@@ -1,12 +1,15 @@
 ---
 # Install packages for other functionality not in base Fedora Workstation
 
-- name: Package install - sysadmin needs
+- name: Package install - system needs
   become: yes
   dnf:
     state: present
     name:
       - cockpit
+      - gocryptfs
+      - restic
+      - rclone
 
 - name: enable and start cockpit
   become: yes

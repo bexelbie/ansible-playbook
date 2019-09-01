@@ -1,0 +1,13 @@
+# Partially derived from
+# https://fedoramagazine.org/automate-backups-with-restic-and-systemd/ and the role provided by Fredrik Rambris in the comments
+
+[Unit]
+Description=Restic backup service
+
+[Service]
+Type=simple
+EnvironmentFile=/home/bexelbie/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure/restic/env
+ExecStart=/usr/bin/restic backup --verbose --one-file-system --tag systemd.timer $RESTIC_BACKUP_EXCLUDES $RESTIC_BACKUP_PATHS && /usr/bin/rclone sync $RESTIC_REPOSITORY $RCLONE_REMOTE --transfers 32 --fast-list --config $RCLONE_CONFIG
+RestartSec=60
+Restart=on-failure
+IOSchedulingClass=idle

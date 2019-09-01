@@ -41,3 +41,18 @@
     name: gocryptfs-mounter.service
     scope: user
     enabled: yes
+
+- name: enable restic-backup timer
+  systemd:
+    name: restic-backup.timer
+    scope: user
+    state: started
+    enabled: yes
+
+- name: enable restic-prune timer
+  systemd:
+    name: restic-prune.timer
+    scope: user
+    state: started
+    enabled: yes
+

@@ -1,8 +1,8 @@
 [Unit]
-Description=Run personal-audit.service every hour
+Description=Run personal-audit.service
 
 [Timer]
-OnCalendar=*-*-* *:00:00
+OnCalendar=hourly
 
 [Install]
 WantedBy=user-graphical-login.target
