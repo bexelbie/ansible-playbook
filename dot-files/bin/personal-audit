@@ -12,5 +12,5 @@ cd $HOME/Repositories/Personal/bexelbie-ansible-playbook
 repo_stat=$(__git_ps1)
 
 if [ "$repo_stat" != " (master=)" ]; then
-    echo "Dot Repository Dirty" > $HOME/.personal_audit
+    echo "---> Dot Repository Dirty" > $HOME/.personal_audit
 fi

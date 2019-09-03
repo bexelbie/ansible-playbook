@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 . /home/bexelbie/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure/restic/env
-env
+env | grep RESTIC\|RCLONE
 /usr/bin/notify-send -u critical "Starting Backup: restic"
 /usr/bin/restic backup --verbose --one-file-system --tag systemd.timer $RESTIC_BACKUP_EXCLUDES $RESTIC_BACKUP_PATHS
 /usr/bin/notify-send -u critical "Starting Backup: rclone"
