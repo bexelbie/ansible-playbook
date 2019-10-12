@@ -31,9 +31,16 @@
       - golang # for building gocryptfs
       - openssl-devel # for building gocryptfs
 
+- name: Ensure group mock exists
+  become: yes
+  group:
+    name: mock
+    state: present
+
 - name: Add {{ myuser }} to the mock group
+  become: yes
   user:
-    name: {{ myuser }}
+    name: "{{ myuser }}"
     groups: mock
     append: yes
 

@@ -56,3 +56,15 @@
     state: started
     enabled: yes
 
+- name: Create ~/Repositories directory
+  file:
+    path: "~/Repositories/"
+    state: directory
+    mode: 0775
+
+- name: Link in the Personal Repositories
+  file:
+    src: "/home/bexelbie/Personal/Repositories"
+    dest: "~/Repositories/Personal"
+    state: link
+

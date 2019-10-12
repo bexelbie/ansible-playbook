@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. /home/bexelbie/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure/restic/env
+. /home/bexelbie/Personal/Repositories/bexelbie-ansible-playbook/dot-files/secure/restic/env
 env | grep RESTIC\|RCLONE
 
 /usr/bin/notify-send -u critical "Starting Backup Prune: restic"

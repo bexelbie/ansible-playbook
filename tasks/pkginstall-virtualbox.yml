@@ -15,7 +15,7 @@
   become: yes
   dnf:
     state: present
-    name: VirtualBox-{{ virtualbox_version }}
+    name: "VirtualBox-{{ virtualbox_version }}"
   notify:
     - rebuild-vbox-kernel
 
@@ -36,7 +36,8 @@
       - dkms
 
 - name: Add {{ myuser }} to the vboxusers group
+  become: yes
   user:
-    name: {{ myuser }}
+    name: "{{ myuser }}"
     groups: vboxusers
     append: yes
