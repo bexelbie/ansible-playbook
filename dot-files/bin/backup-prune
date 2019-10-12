@@ -2,10 +2,19 @@
 
 . /home/bexelbie/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure/restic/env
 env | grep RESTIC\|RCLONE
+
 /usr/bin/notify-send -u critical "Starting Backup Prune: restic"
+export RESTIC_REPOSITORY=$RESTIC_REPOSITORY1
 /usr/bin/restic forget --prune --verbose --tag systemd.timer --group-by "host,paths,tags" --keep-daily $RESTIC_RETENTION_DAYS --keep-weekly $RESTIC_RETENTION_WEEKS --keep-monthly $RESTIC_RETENTION_MONTHS --keep-yearly $RESTIC_RETENTION_YEARS
 /usr/bin/notify-send -u critical "Starting BackupPrune : rclone"
-/usr/bin/rclone sync $RESTIC_REPOSITORY $RCLONE_REMOTE --transfers 32 --fast-list --config $RCLONE_CONFIG -v
+/usr/bin/rclone sync $RESTIC_REPOSITORY $RCLONE_REMOTE1 --transfers 32 --fast-list --config $RCLONE_CONFIG -v
+/usr/bin/notify-send -u critical "Backup Prune Complete"
+
+/usr/bin/notify-send -u critical "Starting Backup Prune: restic select"
+export RESTIC_REPOSITORY=$RESTIC_REPOSITORY2
+/usr/bin/restic forget --prune --verbose --tag systemd.timer --group-by "host,paths,tags" --keep-daily $RESTIC_RETENTION_DAYS --keep-weekly $RESTIC_RETENTION_WEEKS --keep-monthly $RESTIC_RETENTION_MONTHS --keep-yearly $RESTIC_RETENTION_YEARS
+/usr/bin/notify-send -u critical "Starting BackupPrune : rclone select"
+/usr/bin/rclone sync $RESTIC_REPOSITORY $RCLONE_REMOTE2  --transfers 32 --fast-list --config $RCLONE_CONFIG -v
 /usr/bin/notify-send -u critical "Backup Prune Complete"
 
 
