@@ -30,7 +30,7 @@
 
   * Configure Chrome
     * Make Default Browser
-    * Reload Bookmarks
+    * Reload Bookmarks from /home/bexelbie/.config/google-chrome/Default/Bookmarks
     * Settings: Passwords: uncheck offer to save passwords and auto sign-in
     * Settings: Payment Methods: uncheck save and fill payment methods
     * Settings: Addresses: uncheck save and fill addresses
@@ -54,9 +54,3 @@
       - Instapaper
 
   * Calibre - Configure proper library path
-
-  * Install gocryptfs from Release Source (vendored): https://github.com/rfjakob/gocryptfs
-    1. Verify download and untar
-    2. mkdir -p ~/bin/man1
-    3. mv gocryptfs ~/bin
-    3. mv gocryptfs.1 ~/bin/man1
