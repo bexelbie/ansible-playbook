@@ -25,20 +25,14 @@ I use [GNU Stow](https://www.gnu.org/software/stow/) to manage my dotfiles.  I a
    1. fwupdmgr update
 1. Manually update the system `dnf update -y` and reboot
 1. Clone this repository into a temporary location
-1. Verify we have required software installed, dnf install -y gnupg2 pass git ykpers
+1. Verify we have required software installed, dnf install -y gnupg2 pass git ykpers gocryptfs
 1. Restore the public key for bexfiles and enable the use of the yubikey
    1. gpg2 --import docs/bexfiles.public.key
    1. gpg2 --card-status # verify the yubikey
-1. Set up `pass` and reload my password store - see step0.md
+1. Reload my password store and set up for the playbook - see step0.md
 1. `sudo dnf install -y ansible python3-dnf`
-1. Clone this repository into ~bexelbie/Personal/Repositories/
 1. Verify inventory and varfiles/workstation_vars.yml
 1. mount the secure file store
-   1. cd dot-files
-   1. mkdir secure
-   1. pass show GPG/dot-files-secure.gocryptfs.conf > secure.encrypted/gocryptfs.conf
-   1. get password
-   1. gocryptfs secure.encrypted secure`
 1. Install the remote roles: ansible-galaxy install -r requirements.yml
 1. `ansible-playbook workstation.yml -i inventory --ask-become-pass`
 1. Run manual steps in manual-steps.md and private-manual-steps.md

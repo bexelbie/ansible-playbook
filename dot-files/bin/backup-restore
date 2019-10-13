@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+. /home/bexelbie/Personal/Repositories/bexelbie-ansible-playbook/dot-files/secure/restic/env
+env | grep RESTIC\|RCLONE
+
+export RESTIC_REPOSITORY=$RESTIC_REPOSITORY1
+/usr/bin/rclone sync $RCLONE_REMOTE1 $RESTIC_REPOSITORY --transfers 32 --fast-list --config $RCLONE_CONFIG -v
+
+export RESTIC_REPOSITORY=$RESTIC_REPOSITORY2
+/usr/bin/rclone sync $RCLONE_REMOTE2 $RESTIC_REPOSITORY --transfers 32 --fast-list --config $RCLONE_CONFIG -v
