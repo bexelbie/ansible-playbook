@@ -91,6 +91,7 @@ map N :n
 map ** !}fmt
 map *4 !}fmt -w 40
 map *6 !}fmt -w 60
+map *8 !}fmt -w 80
 map *t !}fmt -t
 map *c !}fmt -c
 

@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
 
-/usr/bin/notify-send -u critical "Starting Backup"
+/usr/bin/notify-send -t 200 -u normal "Starting Backup"
 
 . /home/bexelbie/Personal/Repositories/bexelbie-ansible-playbook/dot-files/secure/restic/env
 env | grep RESTIC\|RCLONE
 
-#/usr/bin/notify-send -u critical "Starting Backup: restic"
+#/usr/bin/notify-send -u normal "Starting Backup: restic"
 export RESTIC_REPOSITORY=$RESTIC_REPOSITORY1
 /usr/bin/restic backup --verbose --one-file-system --tag systemd.timer $RESTIC_BACKUP_EXCLUDES1 $RESTIC_BACKUP_PATHS1
-#/usr/bin/notify-send -u critical "Starting Backup: rclone"
+#/usr/bin/notify-send -u normal "Starting Backup: rclone"
 /usr/bin/rclone sync $RESTIC_REPOSITORY $RCLONE_REMOTE1 --transfers 32 --fast-list --config $RCLONE_CONFIG -v
 
-#/usr/bin/notify-send -u critical "Starting Backup: restic select files"
+#/usr/bin/notify-send -u normal "Starting Backup: restic select files"
 export RESTIC_REPOSITORY=$RESTIC_REPOSITORY2
 /usr/bin/restic backup --verbose --one-file-system --tag systemd.timer $RESTIC_BACKUP_EXCLUDES2 $RESTIC_BACKUP_PATHS2
-#/usr/bin/notify-send -u critical "Starting Backup: rclone select files"
+#/usr/bin/notify-send -u normal "Starting Backup: rclone select files"
 /usr/bin/rclone sync $RESTIC_REPOSITORY $RCLONE_REMOTE2 --transfers 32 --fast-list --config $RCLONE_CONFIG -v
 
-/usr/bin/notify-send -u critical "Backup Complete"
-
+/usr/bin/notify-send -t 200 -u normal "Backup Complete"
