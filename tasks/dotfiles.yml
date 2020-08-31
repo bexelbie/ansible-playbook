@@ -130,3 +130,16 @@
 
 - name: Install ~/.gnupg dotfiles
   shell: "stow -d {{ playbook_dir }}/dot-files -t ~/.gnupg gnupg"
+
+- name: Remove Linux ~/.gnupg/gpg-agent.conf on MacOSX
+  file:
+    path: ~/.gnupg/gpg-agent.conf
+    state: absent
+  when: ansible_facts['distribution'] == "MacOSX"
+
+- name: Link the correct gpg-agent.conf on MacOSX
+  file:
+    src: "{{ playbook_dir }}/dot-files/secure/gnupg/gpg-agent.conf.macosx"
+    dest: "~/.gnupg/gpg-agent.conf"
+    state: link
+  when: ansible_facts['distribution'] == "MacOSX"
