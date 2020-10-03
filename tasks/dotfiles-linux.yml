@@ -1,0 +1,52 @@
+---
+- name: Remove default .bashrc
+  file:
+    path: ~/.bashrc
+    state: absent
+
+- name: Install bash dotfiles
+  shell: "stow -d {{ playbook_dir }}/dot-files/secure -t ~ bash"
+
+- name: Create Hexchat config directory
+  file:
+    path: "~/.config/hexchat/"
+    state: directory
+    mode: 0700
+
+- name: Install Hexchat config files
+  copy:
+    src: "{{ playbook_dir }}/dot-files/secure/hexchat/{{ item }}"
+    dest: "~/.config/hexchat/{{ item}}"
+  with_items:
+    - hexchat.conf
+    - notify.conf
+    - pevents.conf
+    - servlist.conf
+
+- name: Create Chrome Kerberos Config Directory
+  become: yes
+  file:
+    path: "/etc/opt/chrome/policies/managed/"
+    state: directory
+    mode: 0755
+
+- name: Install Kerberos Config - Chrome
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/dot-files/chrome-kerberos/kerberos.json"
+    dest: "/etc/opt/chrome/policies/managed/kerberos.json"
+    mode: 0644
+
+- name: Create Chromium Kerberos Config Directory
+  become: yes
+  file:
+    path: "/etc/chromium/policies/managed/"
+    state: directory
+    mode: 0755
+
+- name: Install Kerberos Config - Chromium
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/dot-files/chrome-kerberos/kerberos.json"
+    dest: "/etc/chromium/policies/managed/kerberos.json"
+    mode: 0644

@@ -1,15 +1,6 @@
 ---
 # User level Configs
 
-- name: Create ~/bin directory
-  file:
-    path: "~/bin/"
-    state: directory
-    mode: 0700
-
-- name: Install ~/bin files
-  shell: "stow -d {{ playbook_dir }}/dot-files -t ~/bin/ bin"
-
 - name: Create autostart user directory
   file:
     path: "~/.config/autostart/"

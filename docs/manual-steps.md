@@ -1,5 +1,27 @@
 # Things I haven't figured out so I do by hand
 
+# All Systems
+
+# Mac Only
+
+  * Install from App Store
+    - Slack
+    - DayOne
+    - Telegram Lite
+    - Todoist
+
+  * Install from Developer's Websites
+    - Chrome
+    - Dropbox
+    - Toggl
+      * Run Dropbox and manage the login process to start syncing
+    - Calibre
+      * Calibre - Configure proper library path
+
+  * Set Safari search to duckduckgo
+
+# Linux Only
+
   * Set displays to mirror in GNOME
 
   * Configure Firefox
@@ -18,15 +40,6 @@
     * Extensions: Add Tree Style Tab
     * Extensions: Add DuckDuckGo Privacy Essentials
     * Menu:View:Show bookmark toolbar
-
-  * Run Dropbox and manage the login process to start syncing
-
-  * Install Franz: https://meetfranz.com/download
-    1. Download
-    2. mkdir ~/bin && mv <file> ~/bin
-    3. chmod a+x ~/bin/<file>
-    4. Copy over the ~/.config/Franz dir from the backup
-    5. execute <file>
 
   * Configure Chrome
     * Make Default Browser
@@ -52,5 +65,3 @@
         - Enable for Incognito Mode
       - Feedly
       - Instapaper
-
-  * Calibre - Configure proper library path

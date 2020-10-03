@@ -1,1 +1,5 @@
+collections:
+- community.general
+
+roles:
 - src: jaredhocutt.gnome_extensions

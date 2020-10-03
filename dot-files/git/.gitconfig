@@ -11,7 +11,7 @@
     commend = commit --amend --no-edit
     pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master"
 [gpg]
-    program = /usr/bin/gpg2
+    program = gpg
 [credential "https://gitlab.consulting.redhat.com"]
     username = bexelbie@redhat.com
     helper = "!$HOME/bin/pass-git" "RH/gitlab.consulting.redhat.com-https-push"
