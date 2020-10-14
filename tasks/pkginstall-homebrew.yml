@@ -19,6 +19,7 @@
     brew_cask_packages:
       - osxfuse
       - vlc
+      - libreoffice
   homebrew_cask:
     name: "{{ brew_cask_packages }}"
     state: present
@@ -45,6 +46,7 @@
       - bat
       - exa
       - ripgrep-all
+      - sshuttle
   homebrew:
     name: "{{ brew_packages }}"
     state: present
