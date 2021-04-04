@@ -3,13 +3,10 @@
 ## Phase 1 - base setup
 
 1. Install the OS
-1. Complete preliminary steps in private-manual-steps.md
-1. Turn on file vault
-1. Sign into iCloud
 1. Install home-brew - https://brew.sh
-1. `brew cask install osxfuse`
-1. `brew install python3 pinentry-mac gpg pass gocryptfs`
-1. `pip3 install ansible`
+1. Edit the osxfuse library to not run the postflight -- then run below with no update -- then fix it
+   1. `brew cask install osxfuse`
+1. `brew install ansible pinentry-mac gpg pass gocryptfs`
 
 ## Phase 2 - passwords and more
 

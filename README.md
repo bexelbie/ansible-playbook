@@ -10,6 +10,7 @@ I use [GNU Stow](https://www.gnu.org/software/stow/) to manage my dotfiles.  I a
      * Chrome: .config/google-chrome/Default/Bookmarks
 1. BACKUP (minimally /home and /etc) - this is a failsafe in case my regular backups fail
    * save off to wifi passwords from /etc/sysconfig/network-scripts/keys\*
+1. Validate that things that should sync, such as journals, Dropbox, password managers have
 
 # Installation
 

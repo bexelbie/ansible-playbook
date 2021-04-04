@@ -15,3 +15,5 @@
 [credential "https://gitlab.consulting.redhat.com"]
     username = bexelbie@redhat.com
     helper = "!$HOME/bin/pass-git" "RH/gitlab.consulting.redhat.com-https-push"
+[help]
+	autocorrect = 1

@@ -5,16 +5,12 @@
 # Mac Only
 
   * Install from App Store
-    - Slack
     - DayOne
     - Telegram Lite
     - Todoist
 
   * Install from Developer's Websites
-    - Chrome
     - Dropbox
-    - Toggl
-      * Run Dropbox and manage the login process to start syncing
     - Calibre
       * Calibre - Configure proper library path
 

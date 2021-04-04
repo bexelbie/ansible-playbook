@@ -13,32 +13,13 @@
   register: result
   until: result is successful
 
-- name: Installing Homebrew Cask Packages
-  become: false
-  vars:
-    brew_cask_packages:
-      - osxfuse
-      - vlc
-      - libreoffice
-      - chromium
-  homebrew_cask:
-    name: "{{ brew_cask_packages }}"
-    state: present
-  register: result
-  until: result is successful
-
 - name: Installing Homebrew Packages
   become: false
   vars:
     brew_packages:
-      - pinentry-mac
-      - gpg
-      - pass
       - pass-otp
-      - gocryptfs
       - stow
       - terminal-notifier
-      - python3
       - imapsync
       - zbar
       - youtube-dl
@@ -48,7 +29,6 @@
       - exa
       - ripgrep-all
       - sshuttle
-      - ledger
   homebrew:
     name: "{{ brew_packages }}"
     state: present
