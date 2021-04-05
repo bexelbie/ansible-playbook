@@ -13,3 +13,4 @@
     - import_tasks: tasks/dotfiles-server.yml
     - import_tasks: tasks/gnome-dirs.yml
     - import_tasks: tasks/gnome-settings.yml
+    - import_tasks: tasks/services-server.yml
