@@ -1,6 +1,6 @@
 The Ansible configuration is heavily influenced by https://github.com/maxamillion/maxible/
 
-I use [GNU Stow](https://www.gnu.org/software/stow/) to manage my dotfiles.  I am basically using the methodology that [Alex Pearce describes](https://alexpearce.me/2016/02/managing-dotfiles-with-stow/).  A key difference is that my `.dotfiles` directory is actually a set of directories in this repository.  Additionally, some of the dotfiles are stored here in encrypted form.  They are made available to my session by having them mounted in decrypted form at login.  Details below.
+I use [GNU Stow](https://www.gnu.org/software/stow/) to manage my dotfiles on worktations.  I am basically using the methodology that [Alex Pearce describes](https://alexpearce.me/2016/02/managing-dotfiles-with-stow/).  A key difference is that my `.dotfiles` directory is actually a set of directories in this repository.  Additionally, some of the dotfiles are stored here in encrypted form.  They are made available to my session by having them mounted in decrypted form at login.  Details below.
 
 # Getting Data from the old laptop
 
@@ -14,7 +14,7 @@ I use [GNU Stow](https://www.gnu.org/software/stow/) to manage my dotfiles.  I a
 
 # Installation
 
-  * See Linux-Readme.md or Mac-Readme.md
+  * See Linux-Readme.md or Mac-Readme.md or Server-Readme.md
 
 # Notes/FAQs
 

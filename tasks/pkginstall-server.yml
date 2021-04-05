@@ -1,0 +1,31 @@
+---
+# Install packages for other functionality not in base Fedora Workstation
+
+- name: Package install - system needs
+  become: yes
+  dnf:
+    state: present
+    name:
+      - cockpit
+      - gocryptfs
+      - restic
+      - rclone
+      - stow
+
+- name: enable and start cockpit
+  become: yes
+  systemd:
+    name: cockpit.socket
+    state: started
+    enabled: yes
+
+- name: Package install - user setup needs - CLI
+  become: yes
+  dnf:
+    state: present
+    name:
+      - vim-enhanced
+      - bat
+      - exa
+      - ripgrep
+      - youtube-dl

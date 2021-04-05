@@ -5,7 +5,6 @@
   vars_files:
     - varfiles/linux_vars.yml
     - varfiles/gnome_shell_extensions.yml
-    - varfiles/linux_vars_vault.yml
   tasks:
     - import_tasks: tasks/host.yml
     - import_tasks: tasks/pkguninstall.yml

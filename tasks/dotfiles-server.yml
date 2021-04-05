@@ -1,0 +1,8 @@
+---
+- name: Install git configuration files
+  shell: "stow -d {{ playbook_dir }}/dot-files -t ~/ git"
+
+- name: Reference bashrc
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: . {{ playbook_dir }}/dot-files/bash-server/.bashrc
