@@ -25,6 +25,7 @@
 1. Manually update the system `dnf update -y` and reboot again
 
 Note: To get SSH up quickly
+
 1. Create the ssh directory: `mkdir -m 711 ~/.ssh`
 1. Add authorized key: `gpg2 --export-ssh-key D875E9508202AC07E3D80E76A5EFC0D0E0EADA77\! > ~/.ssh/authorized_keys`
 1. Fix file perms: `chmod go-rw ~/.ssh/authorized_keys`
