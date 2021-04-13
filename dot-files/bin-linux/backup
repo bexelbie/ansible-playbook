@@ -2,7 +2,7 @@
 
 /usr/bin/notify-send -t 200 -u normal "Starting Backup"
 
-. /home/bexelbie/Personal/Repositories/bexelbie-ansible-playbook/dot-files/secure/restic/env
+. /home/bexelbie/Repositories/ansible-playbook/dot-files/secure/restic/env
 env | grep RESTIC\|RCLONE
 
 #/usr/bin/notify-send -u normal "Starting Backup: restic"

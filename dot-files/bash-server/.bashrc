@@ -40,6 +40,7 @@ alias podman-killall='podman rm -f `sudo podman ps -aq`'
 alias podman-cleanall='podman rm -f `sudo podman ps -aq`;podman rmi `podman images -f dangling=true -qa`'
 alias podman-rmdangle='podman rmi $(podman images -f "dangling=true" -q)'
 alias tempcentos='podman run -i -t --privileged -v `pwd`:/workdir --rm=true centos /bin/bash'
+alias tempfedora='podman run -i -t --privileged -v `pwd`:/workdir --rm=true fedora /bin/bash'
 alias blogtest='podman run -e BUNDLE_CACHE=1 --privileged --rm --label=jekyll --volume="/home/bexelbie/Repositories/Personal/bexelbie.github.io/.bundle:/usr/local/bundle:z" --volume=/home/bexelbie/Repositories/Personal/bexelbie.github.io:/srv/jekyll:z -it -p 4000:4000 jekyll/jekyll jekyll s --force_polling --unpublished --future'
 alias nginx-here='podman run --rm -v $(pwd):/usr/share/nginx/html:z -p 8080:80 nginx'
 

@@ -7,7 +7,7 @@ GIT_PS1_SHOWSTASHSTATE=t
 GIT_PS1_SHOWUNTRACKEDFILES=t
 GIT_PS1_SHOWUPSTREAM=git
 
-cd $HOME/Personal/Repositories/bexelbie-ansible-playbook
+cd $HOME/Repositories/ansible-playbook
 
 repo_stat=$(__git_ps1)
 
