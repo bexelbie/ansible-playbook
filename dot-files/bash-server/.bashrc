@@ -45,7 +45,7 @@ alias blogtest='podman run -e BUNDLE_CACHE=1 --privileged --rm --label=jekyll --
 alias nginx-here='podman run --rm -v $(pwd):/usr/share/nginx/html:z -p 8080:80 nginx'
 
 # Make PDFs stand out from other docs
-export EXA_COLORS="*.pdf=33"
+#export EXA_COLORS="*.pdf=33"
 alias ls=exa
 alias tree="exa --tree"
 
