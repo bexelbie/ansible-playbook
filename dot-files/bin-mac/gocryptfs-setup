@@ -4,7 +4,8 @@
 /usr/local/bin/gpgconf --kill gpg-agent
 
 if [ -z $1 ] || [ $1 = "mount" ]; then
-    gocryptfs -extpass "pass show GPG/dot-files-secure.gocryptfs" /Users/bexelbie/Documents/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure.encrypted /Users/bexelbie/Documents/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure
+    #gocryptfs -extpass "pass show GPG/dot-files-secure.gocryptfs" /Users/bexelbie/Documents/Repositories/bexelbie-ansible-playbook/dot-files/secure.encrypted /Users/bexelbie/Documents/Repositories/bexelbie-ansible-playbook/dot-files/secure
+    gocryptfs -extpass "security find-generic-password -a dot-files -s gocryptfs -w" /Users/bexelbie/Documents/Repositories/bexelbie-ansible-playbook/dot-files/secure.encrypted /Users/bexelbie/Documents/Repositories/bexelbie-ansible-playbook/dot-files/secure
 elif [ $1 = "unmount" ]; then
-    umount /Users/bexelbie/Documents/Repositories/Personal/bexelbie-ansible-playbook/dot-files/secure
+    umount /Users/bexelbie/Documents/Repositories/bexelbie-ansible-playbook/dot-files/secure
 fi
