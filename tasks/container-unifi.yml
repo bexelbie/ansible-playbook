@@ -1,0 +1,69 @@
+# Install and set up unifi container
+
+- name: Create systemd user directory
+  file:
+    path: "~/.config/systemd/user/"
+    state: directory
+    mode: 0700
+  when: not ansible_check_mode
+
+- name: Install unifi container systemd.service unitfile
+  copy:
+    src: "{{ playbook_dir }}/dot-files/systemd-user/unifi.service"
+    dest: ~/.config/systemd/user/
+    owner: "{{ myuser }}"
+    group: "{{ mygroup }}"
+    mode: 0644
+    backup: yes
+
+- name: Open port 3478/udp for unifi container
+  become: yes
+  ansible.posix.firewalld:
+    port: 3478/udp
+    permanent: yes
+    state: enabled
+    immediate: yes
+  when: not ansible_check_mode
+
+- name: Open port 8080/tcp for unifi container
+  become: yes
+  ansible.posix.firewalld:
+    port: 8080/tcp
+    permanent: yes
+    state: enabled
+    immediate: yes
+  when: not ansible_check_mode
+
+- name: Open port 8443/tcp for unifi container
+  become: yes
+  ansible.posix.firewalld:
+    port: 8443/tcp
+    permanent: yes
+    state: enabled
+    immediate: yes
+  when: not ansible_check_mode
+
+- name: Create unifi container
+  containers.podman.podman_container:
+    name: unifi
+    image: docker.io/jacobalberty/unifi:latest
+    state: present
+    init: yes
+    volume:
+      - "/home/{{ myuser }}/containers/unifi:/unifi:Z"
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "3478:3478/udp"
+    env:
+      TZ: 'Europe/Prague'
+  when: not ansible_check_mode
+
+- name: enable and start unifi container
+  systemd:
+    name: unifi.service
+    daemon_reload: yes
+    scope: user
+    state: started
+    enabled: yes
+  when: not ansible_check_mode

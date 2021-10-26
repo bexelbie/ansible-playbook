@@ -1,0 +1,23 @@
+---
+- name: Install git configuration files
+  copy:
+    src: "{{ playbook_dir }}/dot-files/git/gitconfig"
+    dest: ~/.gitconfig
+    owner: "{{ myuser }}"
+    group: "{{ mygroup }}"
+    mode: 0644
+    backup: yes
+
+- name: Install shared bash aliases
+  copy:
+    src: "{{ playbook_dir }}/dot-files/bash-server/bashrc"
+    dest: ~/.bash_shared
+    owner: "{{ myuser }}"
+    group: "{{ mygroup }}"
+    mode: 0644
+    backup: yes
+
+- name: Reference bashrc
+  ansible.builtin.lineinfile:
+    path: ~/.bashrc
+    line: . ~/.bash_shared

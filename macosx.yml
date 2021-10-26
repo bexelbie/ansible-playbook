@@ -1,11 +1,12 @@
+---
 - name: Mac OSX Workstation Configuration
   hosts: bextop
   vars_files:
-    - varfiles/pass_vars_vault.yml
+    - varfiles/global_vars.yml
+    - varfiles/mac_vars.yml
   tasks:
-    - import_tasks: tasks/pkginstall-homebrew.yml
-    - import_tasks: tasks/dotfiles.yml
-    - import_tasks: tasks/dotfiles-mac.yml
-    - import_tasks: tasks/bin.yml
-    - import_tasks: tasks/pass.yml
+    - import_tasks: tasks/homebrew-pkginstall.yml
+      when: not ansible_check_mode
+    - import_tasks: tasks/ssh-gpg-dotfiles.yml
+    - import_tasks: tasks/mac-dotfiles.yml
     - import_tasks: tasks/vim-setup.yml

@@ -1,0 +1,5 @@
+---
+# User level Configs
+
+- name: Enable Linger so processes can keep running
+  shell: "loginctl enable-linger {{ myuser }}"

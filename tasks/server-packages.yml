@@ -1,0 +1,41 @@
+---
+- name: Package Uninstall
+  become: yes
+  dnf:
+    state: absent
+    name:
+      - spice-vdagent # This causes a lot of spurious journal errors and isn't needed
+
+- name: Add tailscale repository
+  become: yes
+  yum_repository:
+    name: tailscale-stable
+    description: Tailscale stable
+    baseurl: https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+    state: present
+
+- name: Update All Packages
+  become: yes
+  dnf:
+    name: "*"
+    state: latest
+
+- name: Package install
+  become: yes
+  dnf:
+    state: present
+    name:
+      - cockpit
+      - restic
+      - rclone
+      - ssmtp
+      - mailx
+      - dnf-automatic
+      - git
+      - vim-enhanced
+      - bat
+      - exa
+      - ripgrep
+      - youtube-dl
+      - tailscale
+      - iptables-legacy # for tailscale endpoint

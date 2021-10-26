@@ -1,9 +1,0 @@
----
-# Turn on Services
-
-- name: enable and start sshd
-  become: yes
-  systemd:
-    name: sshd
-    state: started
-    enabled: yes

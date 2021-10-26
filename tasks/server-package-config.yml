@@ -1,0 +1,72 @@
+---
+- name: put root alias in /etc/mail.rc
+  become: yes
+  lineinfile:
+    path: /etc/mail.rc
+    line: 'alias root bex@pobox.com'
+
+- name: put postmaster alias in /etc/mail.rc
+  become: yes
+  lineinfile:
+    path: /etc/mail.rc
+    line: 'alias postmaster bex@pobox.com'
+
+- name: Install /etc/dnf/automatic.conf (backup existing file)
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/dot-files/dnf-automatic/automatic.conf"
+    dest: /etc/dnf/
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+- name: create the dnf-automatic-install.timer.d drop-in override directory
+  become: yes
+  file: path=/etc/systemd/system/dnf-automatic-install.timer.d state=directory
+
+- name: Make dnf automatic run on Sunday mornings at 3am - install drop-in
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/dot-files/systemd-system/dnf-automatic-install.timer.conf"
+    dest: /etc/systemd/system/dnf-automatic-install.timer.d
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+- name: create the dnf-automatic-install.service.d drop-in override directory
+  become: yes
+  file: path=/etc/systemd/system/dnf-automatic-install.service.d state=directory
+
+- name: Make dnf automatic reboot after package installs - install drop-in
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/dot-files/systemd-system/dnf-automatic-install.service.conf"
+    dest: /etc/systemd/system/dnf-automatic-install.service.d
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+- name: put root alias in /etc/ssmtp/revaliases
+  become: yes
+  lineinfile:
+    path: /etc/ssmtp/revaliases
+    line: 'root:bex@pobox.com:smtp.pobox.com:465'
+
+- name: put postmaster alias in /etc/ssmtp/revaliases
+  become: yes
+  lineinfile:
+    path: /etc/ssmtp/revaliases
+    line: 'postmaster:bex@pobox.com:smtp.pobox.com:465'
+
+- name: Install /etc/ssmtp/ssmtp.conf (backup existing file)
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/dot-files/ssmtp/ssmtp.conf"
+    dest: /etc/ssmtp/
+    owner: root
+    group: root
+    mode: 0640
+    backup: yes

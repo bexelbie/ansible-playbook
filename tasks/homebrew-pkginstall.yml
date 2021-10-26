@@ -1,0 +1,38 @@
+---
+# Modified from: https://gist.github.com/mrlesmithjr/f3c15fdd53020a71f55c2032b8be2eda
+
+- name: Updating Homebrew
+  become: false
+  homebrew:
+    update_homebrew: true
+
+- name: Upgrading Homebrew Packages
+  become: false
+  homebrew:
+    upgrade_all: true
+  register: result
+  until: result is successful
+
+- name: Installing Homebrew Packages
+  become: false
+  vars:
+    brew_packages:
+      - imapsync
+      - youtube-dl
+      - restic
+      - rclone
+      - bat
+      - exa
+      - ripgrep-all
+      - ansible
+      - ansible-lint
+      - git
+      - calibre
+      - finicky
+      - vlc
+      - ledger # for CA
+  homebrew:
+    name: "{{ brew_packages }}"
+    state: present
+  register: result
+  until: result is successful

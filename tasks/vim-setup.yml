@@ -6,9 +6,17 @@
     repo: https://github.com/gmarik/Vundle.vim.git
     dest: ~/.vim/bundle/Vundle.vim
     version: master
+  when: not ansible_check_mode
 
 - name: Install vim dotfiles
-  shell: "stow -d {{ playbook_dir }}/dot-files -t ~ vim"
+  copy:
+    src: "{{ playbook_dir }}/dot-files/vim/vimrc"
+    dest: ~/.vimrc
+    owner: "{{ myuser }}"
+    group: "{{ mygroup }}"
+    mode: 0644
+    backup: yes
 
 - name: Install vim plugins
   shell: "vim +PluginInstall +qall"
+  when: not ansible_check_mode

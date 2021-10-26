@@ -1,0 +1,11 @@
+---
+- name: Linux Cloud Configuration
+  hosts: vpn
+  vars_files:
+    - varfiles/global_vars.yml
+    - varfiles/server_vars.yml
+  tasks:
+    - import_tasks: tasks/host.yml
+      when: not ansible_check_mode
+    - import_tasks: tasks/rpm-ostree.yml
+    - import_tasks: tasks/tailscale-configuration.yml

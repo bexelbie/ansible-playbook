@@ -1,0 +1,16 @@
+---
+# Turn on Services
+
+- name: enable and start sshd
+  become: yes
+  systemd:
+    name: sshd
+    state: started
+    enabled: yes
+
+- name: enable and start cockpit
+  become: yes
+  systemd:
+    name: cockpit.socket
+    state: started
+    enabled: yes

@@ -1,16 +1,20 @@
 ---
-
 - name: Linux Workstation Configuration
   hosts: bexsrv
   vars_files:
-    - varfiles/linux_vars.yml
+    - varfiles/global_vars.yml
+    - varfiles/server_vars.yml
   tasks:
     - import_tasks: tasks/host.yml
-    - import_tasks: tasks/pkguninstall.yml
-    - import_tasks: tasks/pkgupdate.yml
-    - import_tasks: tasks/pkginstall-server.yml
+      when: not ansible_check_mode
+    - import_tasks: tasks/server-packages.yml
+      when: not ansible_check_mode
+    - import_tasks: tasks/server-package-config.yml
+    - import_tasks: tasks/tailscale-configuration.yml
     - import_tasks: tasks/vim-setup.yml
-    - import_tasks: tasks/dotfiles-server.yml
-    - import_tasks: tasks/gnome-dirs.yml
-    - import_tasks: tasks/gnome-settings.yml
-    - import_tasks: tasks/services-server.yml
+    - import_tasks: tasks/server-dotfiles.yml
+    - import_tasks: tasks/server-services.yml
+      when: not ansible_check_mode
+    - import_tasks: tasks/server-user.yml
+      when: not ansible_check_mode
+    - import_tasks: tasks/container-unifi.yml
