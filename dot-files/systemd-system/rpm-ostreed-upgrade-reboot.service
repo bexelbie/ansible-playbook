@@ -1,0 +1,10 @@
+# workaround for missing reboot policy
+# https://github.com/coreos/rpm-ostree/issues/2843
+# https://ask.fedoraproject.org/t/how-to-actually-enable-automatic-updates-in-fedora-iot/14113/3
+[Unit]
+Description=rpm-ostree upgrade and reboot
+ConditionPathExists=/run/ostree-booted
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/rpm-ostree upgrade --reboot

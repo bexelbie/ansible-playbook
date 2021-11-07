@@ -1,37 +1,27 @@
 ---
-- name: rpm-ostreed should download and stage updates
-  become: yes
-  lineinfile:
-    path: /etc/rpm-ostreed.conf
-    regexp: '^[#]?#AutomaticUpdatePolicy='
-    line: 'AutomaticUpdatePolicy=stage'
-
-- name: create the rpm-ostreed-automatic.service.d drop-in override directory
-  become: yes
-  file: path=/etc/systemd/system/rpm-ostreed-automatic.service.d state=directory
-
-- name: rpm-ostreed-automatic.service should also reboot - install drop-in
+- name: rpm-ostreed-upgrade-reboot - install service
   become: yes
   copy:
-    src: "{{ playbook_dir }}/dot-files/systemd-system/rpm-ostreed-automatic.service.conf"
-    dest: /etc/systemd/system/rpm-ostreed-automatic.service.d
-    owner: root
-    group: root
-    mode: 0644
-    backup: yes
-
-- name: rpm-ostreed-automatic.timer should run on Sundays at 3am, install override
-  become: yes
-  copy:
-    src: "{{ playbook_dir }}/dot-files/systemd-system/rpm-ostreed-automatic.timer"
+    src: "{{ playbook_dir }}/dot-files/systemd-system/rpm-ostreed-upgrade-reboot.service"
     dest: /etc/systemd/system/
     owner: root
     group: root
     mode: 0644
     backup: yes
 
-- name: enable rpm-ostreed-automatic.timer
+- name: install rpm-ostreed-upgrade-reboot.timer should run on Sundays at 3am
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/dot-files/systemd-system/rpm-ostreed-upgrade-reboot.timer"
+    dest: /etc/systemd/system/
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+- name: enable rpm-ostreed-upgrade-reboot.timer
   become: yes
   systemd:
-    name: rpm-ostreed-automatic.timer
+    name: rpm-ostreed-upgrade-reboot.timer
     enabled: yes
+    state: started
