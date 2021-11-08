@@ -18,3 +18,7 @@
     - import_tasks: tasks/server-user.yml
       when: not ansible_check_mode
     - import_tasks: tasks/container-unifi.yml
+      when: not ansible_check_mode
+    - import_tasks: tasks/blacklist-i2c_piix4.yml
+# Temporary fix
+    - import_tasks: tasks/irqbalance.service-override.yml

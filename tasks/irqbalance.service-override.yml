@@ -1,0 +1,17 @@
+---
+# Fix IRQ Balancer errors
+# https://bugzilla.redhat.com/show_bug.cgi?id=1952715
+# https://bugzilla.redhat.com/show_bug.cgi?id=2009811
+- name: create the irqbalance.service.d drop-in override directory
+  become: yes
+  file: path=/etc/systemd/system/irqbalance.service.d state=directory
+
+- name: Fix the Environment Path and Capabilities for irqbalance
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/dot-files/systemd-system/irqbalance.service.conf"
+    dest: /etc/systemd/system/irqbalance.service.d
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes

@@ -1,0 +1,9 @@
+---
+  # On VMWare Fix: kernel: piix4_smbus 0000:00:07.3: SMBus Host Controller not enabled!
+  # On Google Compute Engine Fix: kernel: piix4_smbus 0000:00:01.3: SMBus base address uninitialized - upgrade BIOS or use force_addr=0xaddr
+- name: Blacklist the i2c_piix4 module on VMWare
+  become: yes
+  lineinfile:
+    path: /etc/modprobe.d/blacklist.conf
+    line: blacklist i2c_piix4
+    create: yes

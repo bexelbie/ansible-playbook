@@ -9,3 +9,4 @@
       when: not ansible_check_mode
     - import_tasks: tasks/rpm-ostree.yml
     - import_tasks: tasks/tailscale-configuration.yml
+    - import_tasks: tasks/blacklist-i2c_piix4.yml
