@@ -41,9 +41,9 @@
 
 - name: Make dnf automatic reboot after package installs - install drop-in
   become: yes
-  copy:
+  template:
     src: "{{ playbook_dir }}/dot-files/systemd-system/dnf-automatic-install.service.conf"
-    dest: /etc/systemd/system/dnf-automatic-install.service.d
+    dest: /etc/systemd/system/dnf-automatic-install.service.d/dnf-automatic-install.service.conf
     owner: root
     group: root
     mode: 0644

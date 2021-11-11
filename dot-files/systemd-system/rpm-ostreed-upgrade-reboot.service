@@ -8,3 +8,4 @@ ConditionPathExists=/run/ostree-booted
 [Service]
 Type=simple
 ExecStart=/usr/bin/rpm-ostree upgrade --reboot
+ExecStartPost=journalctl -r -p 0..3 -S -1w | mail -s "{{ inventory_hostname }}: Journal Entries" bex@pobox.com

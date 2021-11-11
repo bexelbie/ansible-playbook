@@ -1,9 +1,9 @@
 ---
 - name: rpm-ostreed-upgrade-reboot - install service
   become: yes
-  copy:
+  template:
     src: "{{ playbook_dir }}/dot-files/systemd-system/rpm-ostreed-upgrade-reboot.service"
-    dest: /etc/systemd/system/
+    dest: /etc/systemd/system/rpm-ostreed-upgrade-reboot.service
     owner: root
     group: root
     mode: 0644
