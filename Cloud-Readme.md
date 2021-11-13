@@ -1,6 +1,6 @@
 # Linux Server "in the cloud" used as a tailscale endpoint
 
-Note: This machine is installed with Fedora IoT today and the setup here is very incomplete, especially around how the firewall is configured.  Likely it should be disabled and solely rely on the provider cloud provider
+Note: This machine is installed with Fedora IoT
 
 # Maintenance
 1. Consider checking for file changes that may get overwritten: `ansible-playbook cloud.yml --ask-become-pass --ask-vault-pass --check --diff`
