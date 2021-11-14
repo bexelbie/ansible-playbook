@@ -1,0 +1,51 @@
+---
+- name: put root alias in /etc/ssmtp/revaliases
+  become: yes
+  lineinfile:
+    path: /etc/ssmtp/revaliases
+    line: 'root:bex@pobox.com:smtp.pobox.com:465'
+
+- name: put postmaster alias in /etc/ssmtp/revaliases
+  become: yes
+  lineinfile:
+    path: /etc/ssmtp/revaliases
+    line: 'postmaster:bex@pobox.com:smtp.pobox.com:465'
+
+- name: Install /etc/ssmtp/ssmtp.conf (backup existing file)
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/dot-files/ssmtp/ssmtp.conf"
+    dest: /etc/ssmtp/
+    owner: root
+    group: root
+    mode: 0640
+    backup: yes
+
+- name: Remove SELinux policy package
+  become: yes
+  command: semodule -r my-ssmtp-sendmail
+  failed_when: false
+
+- name: Copy SELinux type enforcement file
+  copy:
+    src: "{{ playbook_dir }}/dot-files/ssmtp/my-ssmtp-sendmail.te"
+    dest: /tmp/
+
+- name: Compile SELinux module file
+  command: checkmodule -M -m -o /tmp/my-ssmtp-sendmail.mod /tmp/my-ssmtp-sendmail.te
+
+- name: Build SELinux policy package
+  command: semodule_package -o /tmp/my-ssmtp-sendmail.pp -m /tmp/my-ssmtp-sendmail.mod
+
+- name: Load SELinux policy package
+  become: yes
+  command: semodule -i /tmp/my-ssmtp-sendmail.pp
+
+- name: Remove temporary files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /tmp/my-ssmtp-sendmail.mod
+    - /tmp/my-ssmtp-sendmail.pp
+    - /tmp/my-ssmtp-sendmail.te

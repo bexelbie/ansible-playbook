@@ -48,25 +48,3 @@
     group: root
     mode: 0644
     backup: yes
-
-- name: put root alias in /etc/ssmtp/revaliases
-  become: yes
-  lineinfile:
-    path: /etc/ssmtp/revaliases
-    line: 'root:bex@pobox.com:smtp.pobox.com:465'
-
-- name: put postmaster alias in /etc/ssmtp/revaliases
-  become: yes
-  lineinfile:
-    path: /etc/ssmtp/revaliases
-    line: 'postmaster:bex@pobox.com:smtp.pobox.com:465'
-
-- name: Install /etc/ssmtp/ssmtp.conf (backup existing file)
-  become: yes
-  copy:
-    src: "{{ playbook_dir }}/dot-files/ssmtp/ssmtp.conf"
-    dest: /etc/ssmtp/
-    owner: root
-    group: root
-    mode: 0640
-    backup: yes

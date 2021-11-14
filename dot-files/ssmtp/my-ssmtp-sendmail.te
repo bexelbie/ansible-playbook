@@ -1,0 +1,10 @@
+module my-ssmtp-sendmail 1.0;
+
+require {
+	type init_t;
+	type system_mail_t;
+	class unix_stream_socket append;
+}
+
+#============= system_mail_t ==============
+allow system_mail_t init_t:unix_stream_socket append;
