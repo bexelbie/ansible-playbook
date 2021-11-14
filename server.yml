@@ -10,6 +10,7 @@
     - import_tasks: tasks/server-packages.yml
       when: not ansible_check_mode
     - import_tasks: tasks/server-package-config.yml
+    - import_tasks: tasks/ssmtp-config.yml
     - import_tasks: tasks/tailscale-configuration.yml
     - import_tasks: tasks/vim-setup.yml
     - import_tasks: tasks/server-dotfiles.yml
